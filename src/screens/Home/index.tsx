@@ -19,6 +19,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'finished',
   },
   {
@@ -27,6 +28,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'in_progress',
   },
   {
@@ -35,6 +37,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'in_progress',
   },
   {
@@ -43,6 +46,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'in_progress',
   },
   {
@@ -51,6 +55,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'finished',
   },
   {
@@ -59,6 +64,7 @@ const data: HomeProps[] = [
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',
+    category: 'Aventura',
     status: 'finished',
   },
 ];
@@ -75,6 +81,7 @@ export function Home() {
             author={item.author}
             year={item.year}
             pages={item.pages}
+            category={item.category}
             status={item.status}
           />
         )}

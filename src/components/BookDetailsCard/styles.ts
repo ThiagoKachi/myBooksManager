@@ -37,7 +37,7 @@ export const Title = styled.Text`
 export const Author = styled.Text`
   color: ${({ theme }) => theme.colors.secondary_text};
 
-  font-size: 14px;
+  font-size: 13px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
@@ -45,8 +45,10 @@ export const BookInfos = styled.View`
   flex-direction: row;
   align-items: center;
 
-  margin-top: 12px;
+  margin: 4px 0;
 `;
+
+export const BookCategory = styled(Author)``;
 
 export const Year = styled(Author)``;
 
@@ -64,7 +66,7 @@ export const BookStatus = styled.View`
   flex-direction: row;
   align-items: center;
 
-  margin-top: 16px;
+  margin-top: 8px;
 `;
 
 export const StatusTitle = styled.Text`
@@ -83,5 +85,6 @@ export const StatusLabel = styled.View<StatusLabelProps>`
 `;
 
 export const Label = styled.Text`
+  font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
 `;

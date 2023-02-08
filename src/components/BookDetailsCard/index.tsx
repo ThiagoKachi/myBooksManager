@@ -7,6 +7,7 @@ export interface BookDetailsCardProps {
   author: string;
   year: string;
   pages: string;
+  category: string;
   status: 'finished' | 'in_progress';
 }
 
@@ -15,6 +16,7 @@ export function BookDetailsCard({
   author,
   year,
   pages,
+  category,
   status = 'finished',
 }: BookDetailsCardProps) {
   function decodeStatus() {
@@ -40,6 +42,7 @@ export function BookDetailsCard({
           <S.Divider>•</S.Divider>
           <S.Pages>{pages} páginas</S.Pages>
         </S.BookInfos>
+        <S.BookCategory>Categoria: {category}</S.BookCategory>
         <S.BookStatus>
           <S.StatusTitle>Status:</S.StatusTitle>
           <S.StatusLabel status={status}>

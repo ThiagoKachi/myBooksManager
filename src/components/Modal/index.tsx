@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 
 import * as S from './styles';
@@ -14,7 +13,7 @@ export function ModalConfirmation({
   modalIsOpen,
 }: ModalConfirmationProps) {
   return (
-    <S.Container>
+    <S.Container onPressOut={() => setModalIsOpen(false)}>
       <Modal
         isVisible={modalIsOpen}
         hasBackdrop
@@ -22,11 +21,20 @@ export function ModalConfirmation({
         backdropOpacity={0.7}
         animationIn={'slideInUp'}
         animationOut={'slideOutDown'}
+        scrollOffset={0}
       >
         <S.ModalContainer>
-          <TouchableOpacity onPress={() => setModalIsOpen(false)}>
-            <Text>I am the modal content!</Text>
-          </TouchableOpacity>
+          <S.CloseModal />
+          <S.FilterHeader>Filtro por status</S.FilterHeader>
+          <S.FilterByFinished>
+            <S.FilterLabel>Finalizados</S.FilterLabel>
+          </S.FilterByFinished>
+          <S.FilterByInProgress>
+            <S.FilterLabel>Livros que estou lendo</S.FilterLabel>
+          </S.FilterByInProgress>
+          <S.FilterAll>
+            <S.FilterLabel>Todos os livros</S.FilterLabel>
+          </S.FilterAll>
         </S.ModalContainer>
       </Modal>
     </S.Container>
