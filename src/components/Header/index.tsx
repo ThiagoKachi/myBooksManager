@@ -2,10 +2,23 @@ import React from 'react';
 
 import * as S from './styles';
 
-export function Header() {
+interface HeaderProps {
+  isSearchable: boolean;
+  title?: string;
+}
+
+export function Header({ isSearchable = true, title }: HeaderProps) {
   return (
     <S.Container>
-      <S.PageTitle>Olá, mundo!</S.PageTitle>
+      {isSearchable ? <S.AppTitle>MyBooksManager</S.AppTitle> : null}
+      {isSearchable ? (
+        <S.SearchInput>
+          <S.Search />
+          <S.Icon name="search" />
+        </S.SearchInput>
+      ) : (
+        <S.PageTitle>{title}</S.PageTitle>
+      )}
     </S.Container>
   );
 }
