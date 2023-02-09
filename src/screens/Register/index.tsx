@@ -1,5 +1,11 @@
 import React from 'react';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Keyboard,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -20,6 +26,10 @@ interface FormDataProps {
   url: string;
   year: number;
 }
+
+type NavigationProps = {
+  navigate: (screen: string) => void;
+};
 
 const schema = yup.object().shape({
   name: yup
@@ -52,10 +62,16 @@ export function Register() {
     console.log(data);
   }
 
+  const navigation = useNavigation<NavigationProps>();
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <S.Container>
         <Header isSearchable={false} title="Cadastrar livro" />
+
+        <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+          <Text>Aqui</Text>
+        </TouchableOpacity>
 
         <S.Form>
           <S.Fields>

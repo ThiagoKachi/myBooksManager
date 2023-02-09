@@ -13,45 +13,53 @@ export function AppRoutes() {
   const theme = useTheme();
 
   return (
-    <Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.border_dark,
-        tabBarLabelPosition: 'beside-icon',
-        tabBarStyle: {
-          height: 88,
-          paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-        },
-      }}
-    >
-      <Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome name="home" size={size} color={color} />
-          ),
-        }}
-      />
-      <Screen
-        name="Cadastrar"
-        component={Register}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome name="book" size={size} color={color} />
-          ),
-        }}
-      />
-      <Screen
-        name="Resumo"
-        component={Home}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome name="bar-chart" size={size} color={color} />
-          ),
-        }}
-      />
-    </Navigator>
+    <>
+      <Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarActiveTintColor: theme.colors.primary,
+          tabBarInactiveTintColor: theme.colors.border_dark,
+          tabBarLabelPosition: 'beside-icon',
+          tabBarStyle: {
+            height: 88,
+            paddingVertical: Platform.OS === 'ios' ? 20 : 0,
+          },
+          tabBarButton: ['Details'].includes(route.name)
+            ? () => {
+                return null;
+              }
+            : undefined,
+        })}
+      >
+        <Screen name="Details" component={Home} />
+        <Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({ size, color }) => (
+              <FontAwesome name="home" size={size} color={color} />
+            ),
+          }}
+        />
+        <Screen
+          name="Cadastrar"
+          component={Register}
+          options={{
+            tabBarIcon: ({ size, color }) => (
+              <FontAwesome name="book" size={size} color={color} />
+            ),
+          }}
+        />
+        <Screen
+          name="Resumo"
+          component={Home}
+          options={{
+            tabBarIcon: ({ size, color }) => (
+              <FontAwesome name="bar-chart" size={size} color={color} />
+            ),
+          }}
+        />
+      </Navigator>
+    </>
   );
 }
