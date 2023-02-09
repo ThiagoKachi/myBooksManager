@@ -15,7 +15,7 @@ interface HomeProps extends BookDetailsCardProps {
 const data: HomeProps[] = [
   {
     id: '1',
-    title: 'Harry Potter e a Pedra Filosofal',
+    title: 'Harry Potter',
     author: 'J. K. Rowling',
     year: '2000',
     pages: '224',

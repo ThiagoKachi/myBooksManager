@@ -18,6 +18,7 @@ export default {
     text: '#ffffff',
     secondary_text: 'rgba(0, 0, 0, 0.46)',
     border: '#CBD5E0',
+    border_dark: '#A0AEC0',
     text_dark: '#1A202C',
     background: '#f0f2f5',
   },

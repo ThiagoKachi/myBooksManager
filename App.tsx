@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { ThemeProvider } from 'styled-components';
 import theme from './src/styles/theme';
@@ -12,7 +13,7 @@ import {
 } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Home } from './src/screens/Home';
+import { AppRoutes } from './src/routes/app.routes';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -31,8 +32,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
       <StatusBar style="light" />
+
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

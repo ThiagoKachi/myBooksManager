@@ -9,7 +9,7 @@ export const Container = styled.View`
 
   flex-direction: row;
 
-  padding: 24px 34px 16px 16px;
+  padding: 24px 112px 16px 16px;
 `;
 
 export const Image = styled.Image`

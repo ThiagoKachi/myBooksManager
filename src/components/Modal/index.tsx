@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import Modal from 'react-native-modal';
 
 import * as S from './styles';
@@ -13,7 +14,7 @@ export function ModalConfirmation({
   modalIsOpen,
 }: ModalConfirmationProps) {
   return (
-    <S.Container onPressOut={() => setModalIsOpen(false)}>
+    <S.Container>
       <Modal
         isVisible={modalIsOpen}
         hasBackdrop
@@ -22,20 +23,26 @@ export function ModalConfirmation({
         animationIn={'slideInUp'}
         animationOut={'slideOutDown'}
         scrollOffset={0}
+        onBackdropPress={() => setModalIsOpen(false)}
       >
-        <S.ModalContainer>
-          <S.CloseModal />
-          <S.FilterHeader>Filtro por status</S.FilterHeader>
-          <S.FilterByFinished>
-            <S.FilterLabel>Finalizados</S.FilterLabel>
-          </S.FilterByFinished>
-          <S.FilterByInProgress>
-            <S.FilterLabel>Livros que estou lendo</S.FilterLabel>
-          </S.FilterByInProgress>
-          <S.FilterAll>
-            <S.FilterLabel>Todos os livros</S.FilterLabel>
-          </S.FilterAll>
-        </S.ModalContainer>
+        <TouchableWithoutFeedback>
+          <S.ModalContainer>
+            <S.CloseModal onPress={() => setModalIsOpen(false)} />
+            <S.FilterHeader>Filtro por status</S.FilterHeader>
+            <S.FilterContainer>
+              <S.FilterLabel>Finalizados</S.FilterLabel>
+              <S.Icon name="book" />
+            </S.FilterContainer>
+            <S.FilterContainer>
+              <S.FilterLabel>Livros que estou lendo</S.FilterLabel>
+              <S.Icon name="book-open" />
+            </S.FilterContainer>
+            <S.FilterContainer>
+              <S.FilterLabel>Todos os livros</S.FilterLabel>
+              <S.Icon name="layers" />
+            </S.FilterContainer>
+          </S.ModalContainer>
+        </TouchableWithoutFeedback>
       </Modal>
     </S.Container>
   );
