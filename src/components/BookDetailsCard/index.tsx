@@ -1,22 +1,35 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import * as S from './styles';
 
+type ParamNavigation = {
+  id: string;
+};
+
+export type NavigationProps = {
+  navigate: (screen: string, param: ParamNavigation) => void;
+};
+
 export interface BookDetailsCardProps {
+  id: string;
   title: string;
   author: string;
   year: string;
   pages: string;
   category: string;
+  image: string;
   status: 'finished' | 'in_progress';
 }
 
 export function BookDetailsCard({
+  id = '1',
   title,
   author,
   year,
   pages,
   category,
+  image,
   status = 'finished',
 }: BookDetailsCardProps) {
   function decodeStatus() {
@@ -24,8 +37,10 @@ export function BookDetailsCard({
     if (status === 'in_progress') return 'Lendo';
   }
 
+  const navigation = useNavigation<NavigationProps>();
+
   return (
-    <S.Container>
+    <S.Container onPress={() => navigation.navigate('Details', { id })}>
       <S.Image
         style={{ resizeMode: 'contain' }}
         source={{

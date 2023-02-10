@@ -4,7 +4,7 @@ interface StatusLabelProps {
   status: 'finished' | 'not_finished' | 'in_progress';
 }
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: 100%;
 
   flex-direction: row;

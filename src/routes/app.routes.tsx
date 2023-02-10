@@ -6,6 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { Home } from '../screens/Home';
 import { Register } from '../screens/Register';
+import { BookDetail } from '../screens/BookDetail';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -31,7 +32,11 @@ export function AppRoutes() {
             : undefined,
         })}
       >
-        <Screen name="Details" component={Home} />
+        <Screen
+          name="Details"
+          component={BookDetail}
+          initialParams={{ id: null }}
+        />
         <Screen
           name="Home"
           component={Home}
