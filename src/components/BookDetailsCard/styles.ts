@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 interface StatusLabelProps {
-  status: 'finished' | 'not_finished' | 'in_progress';
+  status: 'finished' | 'in_progress' | 'my_list';
 }
 
 export const Container = styled.TouchableOpacity`
@@ -81,7 +81,11 @@ export const StatusLabel = styled.View<StatusLabelProps>`
   border-radius: 12px;
 
   background-color: ${({ theme, status }) =>
-    status === 'finished' ? theme.colors.success : theme.colors.primary_light};
+    status === 'finished'
+      ? theme.colors.success
+      : status === 'in_progress'
+      ? theme.colors.primary_light
+      : theme.colors.title};
 `;
 
 export const Label = styled.Text`

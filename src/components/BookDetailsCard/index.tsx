@@ -19,7 +19,7 @@ export interface BookDetailsCardProps {
   pages: string;
   category: string;
   image: string;
-  status: 'finished' | 'in_progress';
+  status: 'finished' | 'in_progress' | 'my_list';
 }
 
 export function BookDetailsCard({
@@ -35,6 +35,7 @@ export function BookDetailsCard({
   function decodeStatus() {
     if (status === 'finished') return 'Finalizado';
     if (status === 'in_progress') return 'Lendo';
+    if (status === 'my_list') return 'Minha lista';
   }
 
   const navigation = useNavigation<NavigationProps>();

@@ -57,7 +57,7 @@ const data: BookDetailsCardProps[] = [
     pages: '224',
     image: '',
     category: 'Aventura',
-    status: 'finished',
+    status: 'my_list',
   },
   {
     id: '6',
@@ -67,7 +67,7 @@ const data: BookDetailsCardProps[] = [
     pages: '224',
     image: '',
     category: 'Aventura',
-    status: 'finished',
+    status: 'my_list',
   },
 ];
 
