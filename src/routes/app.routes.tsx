@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Home } from '../screens/Home';
 import { Register } from '../screens/Register';
 import { BookDetail } from '../screens/BookDetail';
+import { Resume } from '../screens/Resume';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -16,6 +17,7 @@ export function AppRoutes() {
   return (
     <>
       <Navigator
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarActiveTintColor: theme.colors.primary,
@@ -57,7 +59,7 @@ export function AppRoutes() {
         />
         <Screen
           name="Resumo"
-          component={Home}
+          component={Resume}
           options={{
             tabBarIcon: ({ size, color }) => (
               <FontAwesome name="bar-chart" size={size} color={color} />
