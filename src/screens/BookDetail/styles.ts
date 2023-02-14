@@ -87,10 +87,28 @@ export const Pages = styled(Year)`
 
 export const ResumeContainer = styled.ScrollView``;
 
-export const Resume = styled.Text`
-  margin-top: 16px;
+export const ChangeStatusButton = styled.TouchableOpacity`
+  width: 85%;
+  margin: 16px auto;
+  padding: 16px 0;
 
-  padding: 32px;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 6px;
+
+  background-color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const ChangeStatusButtonText = styled.Text`
+  text-align: center;
+
+  color: ${({ theme }) => theme.colors.shape};
+
+  font-family: ${({ theme }) => theme.fonts.semibold};
+  font-size: 18px;
+`;
+
+export const Resume = styled.Text`
+  padding: 8px 32px;
 
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.regular};

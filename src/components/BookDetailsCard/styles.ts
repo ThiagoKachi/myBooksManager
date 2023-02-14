@@ -20,7 +20,7 @@ export const Image = styled.Image`
 `;
 
 export const BookInfoContainer = styled.View`
-  margin-left: 8px;
+  margin-left: 16px;
 
   justify-content: space-between;
 `;

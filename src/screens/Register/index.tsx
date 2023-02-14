@@ -1,28 +1,38 @@
 import React from 'react';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import uuid from 'react-native-uuid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
 
 import { InputForm } from '../../components/Form/InputForm';
 import { Header } from '../../components/Header';
 
 import * as S from './styles';
+import { BookStatus } from '../../components/BookDetailsCard';
 
-interface FormDataProps {
+export interface FormDataProps {
+  id: string;
   author: string;
   gender: string;
-  image: string;
-  name: string;
-  pages: number;
+  title: string;
+  pages: string;
   summary: string;
-  url: string;
-  year: number;
+  year: string;
+  status: BookStatus;
+  url?: string;
+  image?: string;
 }
 
+type NavigationProps = {
+  navigate: (screen: string) => void;
+};
+
 const schema = yup.object().shape({
-  name: yup
+  title: yup
     .string()
     .min(2, 'Preencha com um nome válido')
     .required('Nome é obrigatório'),
@@ -44,12 +54,42 @@ export function Register() {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormDataProps>({
     resolver: yupResolver(schema),
   });
 
+  const navigation = useNavigation<NavigationProps>();
+
   async function handleRegister(data: FormDataProps) {
     console.log(data);
+    const newBook = {
+      id: String(uuid.v4()),
+      title: data.title,
+      author: data.author,
+      pages: data.pages,
+      year: data.year,
+      summary: data.summary,
+      gender: data.gender,
+      image: data.image,
+      url: data.url,
+      status: 'my_list',
+    };
+
+    try {
+      const dataKey = `@mybooksmanager:books`;
+      const data = await AsyncStorage.getItem(dataKey);
+      const currentData = data ? JSON.parse(data) : [];
+
+      const dataFormatted = [...currentData, newBook];
+      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+
+      reset();
+      navigation.navigate('Home');
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Não foi possível salvar.');
+    }
   }
 
   return (
@@ -60,9 +100,9 @@ export function Register() {
         <S.Form>
           <S.Fields>
             <InputForm
-              name="name"
+              name="title"
               control={control}
-              error={errors.name && errors.name.message}
+              error={errors.title && errors.title.message}
               placeholder="Nome do livro"
               autoCapitalize="sentences"
               autoCorrect={false}

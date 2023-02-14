@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import * as S from './styles';
+import { Text, TouchableOpacity } from 'react-native';
 
 interface NavigationProps {
   route: {
@@ -21,7 +22,17 @@ export type NavigateProp = {
 export function BookDetail({ route }: NavigationProps) {
   const navigation = useNavigation<NavigateProp>();
 
+  function changeStatus(status: string) {
+    if (status === 'finished') return 'Finalizado';
+    if (status === 'in_progress') return 'Finalizado';
+    if (status === 'my_list') return 'Lendo';
+  }
+
   const { id } = route.params;
+
+  // const bookImage = image
+  //   ? { uri: image }
+  //   : require('../../assets/book_default.png');
 
   return (
     <S.Container>
@@ -44,6 +55,11 @@ export function BookDetail({ route }: NavigationProps) {
           <S.Pages>Páginas: 224</S.Pages>
         </S.PageYear>
       </S.BookContainer>
+      <S.ChangeStatusButton>
+        <S.ChangeStatusButtonText>
+          {changeStatus('in_progress')}
+        </S.ChangeStatusButtonText>
+      </S.ChangeStatusButton>
       <S.ResumeContainer>
         <S.Resume>
           Border width adds up to the size of the component that you added to.

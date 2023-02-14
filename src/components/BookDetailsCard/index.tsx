@@ -11,6 +11,8 @@ export type NavigationProps = {
   navigate: (screen: string, param: ParamNavigation) => void;
 };
 
+export type BookStatus = 'finished' | 'in_progress' | 'my_list';
+
 export interface BookDetailsCardProps {
   id: string;
   title: string;
@@ -19,7 +21,7 @@ export interface BookDetailsCardProps {
   pages: string;
   category: string;
   image: string;
-  status: 'finished' | 'in_progress' | 'my_list';
+  status: BookStatus;
 }
 
 export function BookDetailsCard({
@@ -40,14 +42,13 @@ export function BookDetailsCard({
 
   const navigation = useNavigation<NavigationProps>();
 
+  const bookImage = image
+    ? { uri: image }
+    : require('../../assets/book_default.png');
+
   return (
     <S.Container onPress={() => navigation.navigate('Details', { id })}>
-      <S.Image
-        style={{ resizeMode: 'contain' }}
-        source={{
-          uri: 'https://m.media-amazon.com/images/I/41897yAI4LL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        }}
-      />
+      <S.Image style={{ resizeMode: 'contain' }} source={bookImage} />
       <S.BookInfoContainer>
         <S.BookContainer>
           <S.Title>{title}</S.Title>

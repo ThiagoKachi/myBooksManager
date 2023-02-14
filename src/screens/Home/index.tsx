@@ -1,82 +1,39 @@
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import {
-  BookDetailsCard,
-  BookDetailsCardProps,
-} from '../../components/BookDetailsCard';
+import { BookDetailsCard } from '../../components/BookDetailsCard';
 import { Header } from '../../components/Header';
+import { FormDataProps } from '../Register';
 
 import * as S from './styles';
 
-const data: BookDetailsCardProps[] = [
-  {
-    id: '1',
-    title: 'Harry Potter',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'finished',
-  },
-  {
-    id: '2',
-    title: 'Harry Potter e a Pedra Filosofal',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'in_progress',
-  },
-  {
-    id: '3',
-    title: 'Harry Potter e a Pedra Filosofal',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'in_progress',
-  },
-  {
-    id: '4',
-    title: 'Harry Potter e a Pedra Filosofal',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'in_progress',
-  },
-  {
-    id: '5',
-    title: 'Harry Potter e a Pedra Filosofal',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'my_list',
-  },
-  {
-    id: '6',
-    title: 'Harry Potter e a Pedra Filosofal',
-    author: 'J. K. Rowling',
-    year: '2000',
-    pages: '224',
-    image: '',
-    category: 'Aventura',
-    status: 'my_list',
-  },
-];
-
 export function Home() {
+  const [books, setBooks] = useState<FormDataProps[]>([]);
+
+  async function loadTransactions() {
+    const dataKey = `@mybooksmanager:books`;
+    const response = await AsyncStorage.getItem(dataKey);
+    const transactions = response ? JSON.parse(response) : [];
+
+    setBooks(transactions);
+  }
+
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadTransactions();
+    }, [])
+  );
+
   return (
     <S.Container>
       <Header isSearchable />
       <FlatList
-        data={data}
+        data={books}
         renderItem={({ item }) => (
           <BookDetailsCard
             id="1"
@@ -84,7 +41,7 @@ export function Home() {
             author={item.author}
             year={item.year}
             pages={item.pages}
-            category={item.category}
+            category={item.gender}
             status={item.status}
             image={''}
           />
