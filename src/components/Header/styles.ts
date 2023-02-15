@@ -1,3 +1,4 @@
+import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 
@@ -42,9 +43,7 @@ export const Icon = styled(Feather)`
   font-size: 20px;
 `;
 
-export const Search = styled.TextInput.attrs({
-  placeholder: 'Faça sua busca',
-})`
+export const Search = styled(TextInput)`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.regular};
 

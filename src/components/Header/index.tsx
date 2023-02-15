@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { TextInputProps } from 'react-native';
 import { ModalConfirmation } from '../Modal';
 
 import * as S from './styles';
 
-interface HeaderProps {
+interface HeaderProps extends TextInputProps {
   isSearchable: boolean;
   title?: string;
 }
 
-export function Header({ isSearchable = true, title }: HeaderProps) {
+export function Header({ isSearchable = true, title, ...rest }: HeaderProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ export function Header({ isSearchable = true, title }: HeaderProps) {
       {isSearchable ? (
         <S.FilterContainer>
           <S.SearchInput>
-            <S.Search />
+            <S.Search {...rest} placeholder="Faça sua busca" />
             <S.Icon name="search" />
           </S.SearchInput>
           <S.FilterButton onPress={() => setModalIsOpen(true)}>

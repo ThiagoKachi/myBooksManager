@@ -32,7 +32,7 @@ export const Icon = styled(Feather)`
 export const Image = styled.Image`
   margin: 0 auto;
 
-  width: 300px;
+  width: 250px;
   height: 300px;
 
   margin-top: -160px;
@@ -97,6 +97,13 @@ export const ChangeStatusButton = styled.TouchableOpacity`
 
   background-color: ${({ theme }) => theme.colors.primary};
 `;
+
+export const StatusMessage = styled.Text`
+  font-size: 14px;
+
+  font-family: ${({ theme }) => theme.fonts.regular};
+`;
+export const Status = styled.Text``;
 
 export const ChangeStatusButtonText = styled.Text`
   text-align: center;
