@@ -37,7 +37,7 @@ export function AppRoutes() {
         <Screen
           name="Details"
           component={BookDetail}
-          initialParams={{ id: null }}
+          initialParams={{ book: {} }}
         />
         <Screen
           name="Home"

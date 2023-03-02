@@ -103,7 +103,9 @@ export const StatusMessage = styled.Text`
 
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
-export const Status = styled.Text``;
+export const Status = styled.Text`
+  font-size: 16px;
+`;
 
 export const ChangeStatusButtonText = styled.Text`
   text-align: center;

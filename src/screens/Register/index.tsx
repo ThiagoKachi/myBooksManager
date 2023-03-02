@@ -1,5 +1,10 @@
 import React from 'react';
-import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import uuid from 'react-native-uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -94,80 +99,82 @@ export function Register() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <S.Container>
-        <Header isSearchable={false} title="Cadastrar livro" />
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <S.Container>
+          <Header isSearchable={false} title="Cadastrar livro" />
 
-        <S.Form>
-          <S.Fields>
-            <InputForm
-              name="title"
-              control={control}
-              error={errors.title && errors.title.message}
-              placeholder="Nome do livro"
-              autoCapitalize="sentences"
-              autoCorrect={false}
-            />
+          <S.Form>
+            <S.Fields>
+              <InputForm
+                name="title"
+                control={control}
+                error={errors.title && errors.title.message}
+                placeholder="Nome do livro"
+                autoCapitalize="sentences"
+                autoCorrect={false}
+              />
 
-            <InputForm
-              name="author"
-              control={control}
-              error={errors.author && errors.author.message}
-              placeholder="Autor"
-            />
+              <InputForm
+                name="author"
+                control={control}
+                error={errors.author && errors.author.message}
+                placeholder="Autor"
+              />
 
-            <InputForm
-              name="pages"
-              control={control}
-              error={errors.pages && errors.pages.message}
-              placeholder="Nº de páginas"
-              keyboardType="numeric"
-            />
+              <InputForm
+                name="pages"
+                control={control}
+                error={errors.pages && errors.pages.message}
+                placeholder="Nº de páginas"
+                keyboardType="numeric"
+              />
 
-            <InputForm
-              name="year"
-              control={control}
-              error={errors.year && errors.year.message}
-              placeholder="Ano de lançamento"
-              keyboardType="numeric"
-              maxLength={4}
-            />
+              <InputForm
+                name="year"
+                control={control}
+                error={errors.year && errors.year.message}
+                placeholder="Ano de lançamento"
+                keyboardType="numeric"
+                maxLength={4}
+              />
 
-            <InputForm
-              name="summary"
-              control={control}
-              error={errors.summary && errors.summary.message}
-              placeholder="Resumo"
-              multiline
-              numberOfLines={8}
-            />
+              <InputForm
+                name="summary"
+                control={control}
+                error={errors.summary && errors.summary.message}
+                placeholder="Resumo"
+                multiline
+                numberOfLines={8}
+              />
 
-            <InputForm
-              name="gender"
-              control={control}
-              error={errors.gender && errors.gender.message}
-              placeholder="Gênero"
-            />
+              <InputForm
+                name="gender"
+                control={control}
+                error={errors.gender && errors.gender.message}
+                placeholder="Gênero"
+              />
 
-            <InputForm
-              name="image"
-              control={control}
-              error={errors.image && errors.image.message}
-              placeholder="Imagem do livro"
-            />
+              <InputForm
+                name="image"
+                control={control}
+                error={errors.image && errors.image.message}
+                placeholder="Imagem do livro"
+              />
 
-            <InputForm
-              name="url"
-              control={control}
-              error={errors.url && errors.url.message}
-              placeholder="Link de compra do livro"
-            />
-          </S.Fields>
+              <InputForm
+                name="url"
+                control={control}
+                error={errors.url && errors.url.message}
+                placeholder="Link de compra do livro"
+              />
+            </S.Fields>
 
-          <S.Button onPress={handleSubmit(handleRegister)}>
-            <S.ButtonText>Enviar</S.ButtonText>
-          </S.Button>
-        </S.Form>
-      </S.Container>
+            <S.Button onPress={handleSubmit(handleRegister)}>
+              <S.ButtonText>Enviar</S.ButtonText>
+            </S.Button>
+          </S.Form>
+        </S.Container>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }

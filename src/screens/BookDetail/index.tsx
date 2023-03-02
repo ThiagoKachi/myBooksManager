@@ -1,50 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { FormDataProps } from '../Register';
+import { decodeStatus } from '../../utils/decodeStatus';
 
 import * as S from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FormDataProps } from '../Register';
-
-interface NavigationProps {
-  route: {
-    key: string;
-    name: string;
-    params: {
-      id: number;
-    };
-    path: undefined | string;
-  };
-}
 
 export type NavigateProp = {
   navigate: (screen: string) => void;
 };
 
-export function BookDetail({ route }: NavigationProps) {
-  const { id } = route.params;
+interface Params {
+  book: FormDataProps;
+}
+
+export function BookDetail() {
+  const route = useRoute();
+  const { book: bookDetail } = route.params as Params;
+
   const [book, setBook] = useState<FormDataProps>({} as FormDataProps);
 
   const navigation = useNavigation<NavigateProp>();
 
-  function changeStatus(status: string) {
-    if (status === 'finished') return 'Finalizado';
-    if (status === 'in_progress') return 'Finalizado';
-    if (status === 'my_list') return 'Lendo';
-  }
-
   useEffect(() => {
-    async function getBookDetail() {
-      const dataKey = `@mybooksmanager:books`;
-      const response = await AsyncStorage.getItem(dataKey);
-      const bookList = response ? JSON.parse(response) : [];
-      const book = bookList.find(
-        (book: FormDataProps) => book.id === String(id)
-      );
-
-      setBook(book);
-    }
-    getBookDetail();
-  }, [id]);
+    setBook(bookDetail);
+  }, [bookDetail]);
 
   const bookImage = book.image
     ? { uri: book.image }
@@ -69,7 +49,7 @@ export function BookDetail({ route }: NavigationProps) {
       <S.ChangeStatusButton>
         <S.ChangeStatusButtonText>
           <S.StatusMessage>Mudar status para: </S.StatusMessage>
-          <S.Status>{changeStatus(book.status)}</S.Status>
+          <S.Status>{decodeStatus(book.status)}</S.Status>
         </S.ChangeStatusButtonText>
       </S.ChangeStatusButton>
       <S.ResumeContainer>

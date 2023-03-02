@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacityProps } from 'react-native';
+import { decodeStatus } from '../../utils/decodeStatus';
 
 import * as S from './styles';
 
@@ -13,7 +14,7 @@ export type NavigationProps = {
 
 export type BookStatus = 'finished' | 'in_progress' | 'my_list';
 
-export interface BookDetailsCardProps {
+export interface BookDetailsCardProps extends TouchableOpacityProps {
   id: string;
   title: string;
   author: string;
@@ -33,21 +34,14 @@ export function BookDetailsCard({
   category,
   image,
   status = 'finished',
+  ...rest
 }: BookDetailsCardProps) {
-  function decodeStatus() {
-    if (status === 'finished') return 'Finalizado';
-    if (status === 'in_progress') return 'Lendo';
-    if (status === 'my_list') return 'Minha lista';
-  }
-
-  const navigation = useNavigation<NavigationProps>();
-
   const bookImage = image
     ? { uri: image }
     : require('../../assets/book_default.png');
 
   return (
-    <S.Container onPress={() => navigation.navigate('Details', { id })}>
+    <S.Container {...rest}>
       <S.Image style={{ resizeMode: 'contain' }} source={bookImage} />
       <S.BookInfoContainer>
         <S.BookContainer>
@@ -63,7 +57,7 @@ export function BookDetailsCard({
         <S.BookStatus>
           <S.StatusTitle>Status:</S.StatusTitle>
           <S.StatusLabel status={status}>
-            <S.Label>{decodeStatus()}</S.Label>
+            <S.Label>{decodeStatus(status)}</S.Label>
           </S.StatusLabel>
         </S.BookStatus>
       </S.BookInfoContainer>

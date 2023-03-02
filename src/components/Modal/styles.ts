@@ -7,7 +7,7 @@ export const ModalContainer = styled.View`
   position: absolute;
   bottom: 0;
 
-  height: 320px;
+  height: 400px;
 
   background-color: ${({ theme }) => theme.colors.shape};
 

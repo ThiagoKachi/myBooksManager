@@ -4,7 +4,7 @@ interface StatusLabelProps {
   status: 'finished' | 'in_progress' | 'my_list';
 }
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.TouchableOpacity<any>`
   width: 100%;
 
   flex-direction: row;

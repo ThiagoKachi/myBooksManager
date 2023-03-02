@@ -7,11 +7,15 @@ import * as S from './styles';
 interface HeaderProps extends TextInputProps {
   isSearchable: boolean;
   title?: string;
+  setModalIsOpen: (value: boolean) => void;
 }
 
-export function Header({ isSearchable = true, title, ...rest }: HeaderProps) {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
+export function Header({
+  isSearchable = true,
+  title,
+  setModalIsOpen,
+  ...rest
+}: HeaderProps) {
   return (
     <S.Container>
       {isSearchable ? <S.AppTitle>MyBooksManager</S.AppTitle> : null}
@@ -28,10 +32,6 @@ export function Header({ isSearchable = true, title, ...rest }: HeaderProps) {
       ) : (
         <S.PageTitle>{title}</S.PageTitle>
       )}
-      <ModalConfirmation
-        setModalIsOpen={setModalIsOpen}
-        modalIsOpen={modalIsOpen}
-      />
     </S.Container>
   );
 }

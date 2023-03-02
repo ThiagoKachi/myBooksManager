@@ -57,14 +57,14 @@ export const ResumeCard = styled.View`
 export const ResumeIcon = styled(Feather)`
   font-size: 50px;
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 export const ResumeInfo = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.semibold};
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.title};
 
   margin-top: 8px;
 `;
@@ -112,7 +112,7 @@ export const Card = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.semibold};
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.title};
 
   margin-top: 8px;
 `;
