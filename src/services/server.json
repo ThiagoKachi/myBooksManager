@@ -1,0 +1,54 @@
+{
+  "books": [
+    {
+      "id": "6d47c9bd-d176-4afb-b844-cfd83554e07a",
+      "title": "Fdx",
+      "author": "Vcsx",
+      "pages": 554,
+      "year": 5478,
+      "summary": "Vcsx",
+      "gender": "Fdd",
+      "status": "my_list"
+    },
+    {
+      "id": "ce464897-899d-48c9-8ec8-6a5908452b3a",
+      "title": "Harry potter",
+      "author": "Kk Rowling",
+      "pages": 123,
+      "year": 2000,
+      "summary": "Qualquer coisa aqui ",
+      "gender": "Aventura",
+      "status": "my_list"
+    },
+    {
+      "id": "fbb3e6da-592c-431a-a039-63ffa10f43f4",
+      "title": "Teste",
+      "author": "Thiago",
+      "pages": 123,
+      "year": 1996,
+      "summary": "Alguma coisa aqui",
+      "gender": "Aventura",
+      "status": "my_list"
+    },
+    {
+      "id": "665d836a-9df5-4bf1-8e97-6ca57437f4de",
+      "title": "Teste loading",
+      "author": "Thiago",
+      "pages": 465,
+      "year": 1467,
+      "summary": "Bla",
+      "gender": "Comedia",
+      "status": "my_list"
+    },
+    {
+      "id": "3c9177d8-7216-4bb3-8c05-8f6843906320",
+      "title": "Loading",
+      "author": "Thiago",
+      "pages": 468,
+      "year": 1568,
+      "summary": "Nakamura m",
+      "gender": "Terror",
+      "status": "my_list"
+    }
+  ]
+}

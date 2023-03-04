@@ -46,7 +46,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
-  font-size: 14px;
+  font-size: 16px;
 
   color: ${({ theme }) => theme.colors.shape};
 `;

@@ -6,8 +6,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import uuid from 'react-native-uuid';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { useTheme } from 'styled-components';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,9 +15,12 @@ import { useNavigation } from '@react-navigation/native';
 
 import { InputForm } from '../../components/Form/InputForm';
 import { Header } from '../../components/Header';
+import { Loading } from '../../components/Loading';
+import { BookStatus } from '../../components/BookDetailsCard';
+
+import api from '../../services/api';
 
 import * as S from './styles';
-import { BookStatus } from '../../components/BookDetailsCard';
 
 export interface FormDataProps {
   id: string;
@@ -55,6 +58,10 @@ const schema = yup.object().shape({
 });
 
 export function Register() {
+  const theme = useTheme();
+
+  const [isLoading, setLoading] = React.useState(false);
+
   const {
     control,
     handleSubmit,
@@ -67,7 +74,6 @@ export function Register() {
   const navigation = useNavigation<NavigationProps>();
 
   async function handleRegister(data: FormDataProps) {
-    console.log(data);
     const newBook = {
       id: String(uuid.v4()),
       title: data.title,
@@ -82,18 +88,16 @@ export function Register() {
     };
 
     try {
-      const dataKey = `@mybooksmanager:books`;
-      const data = await AsyncStorage.getItem(dataKey);
-      const currentData = data ? JSON.parse(data) : [];
-
-      const dataFormatted = [...currentData, newBook];
-      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+      setLoading(true);
+      await api.post('/books', newBook);
 
       reset();
       navigation.navigate('Home');
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível salvar.');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -170,7 +174,13 @@ export function Register() {
             </S.Fields>
 
             <S.Button onPress={handleSubmit(handleRegister)}>
-              <S.ButtonText>Enviar</S.ButtonText>
+              <S.ButtonText disabled={isLoading}>
+                {isLoading ? (
+                  <Loading color={theme.colors.shape} size="small" />
+                ) : (
+                  'Enviar'
+                )}
+              </S.ButtonText>
             </S.Button>
           </S.Form>
         </S.Container>
