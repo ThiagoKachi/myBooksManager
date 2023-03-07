@@ -152,15 +152,20 @@ export function Register() {
               />
             </S.Fields>
 
-            <S.Button onPress={handleSubmit(handleRegister)}>
-              <S.ButtonText disabled={isLoading}>
-                {isLoading ? (
-                  <Loading color={theme.colors.shape} size="small" />
-                ) : (
-                  'Enviar'
-                )}
-              </S.ButtonText>
-            </S.Button>
+            <S.ButtonContainer>
+              <S.Button onPress={handleSubmit(handleRegister)}>
+                <S.ButtonText disabled={isLoading}>
+                  {isLoading ? (
+                    <Loading color={theme.colors.shape} size="small" />
+                  ) : (
+                    'Enviar'
+                  )}
+                </S.ButtonText>
+              </S.Button>
+              <S.ButtonAddExternal>
+                <S.ButtonAddExternalText>Buscar livro</S.ButtonAddExternalText>
+              </S.ButtonAddExternal>
+            </S.ButtonContainer>
           </S.Form>
         </S.Container>
       </KeyboardAvoidingView>

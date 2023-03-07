@@ -37,6 +37,10 @@ export const TransactionsTypes = styled.View`
   margin-bottom: 16px;
 `;
 
+export const ButtonContainer = styled.View``;
+export const ButtonAddExternal = styled.TouchableOpacity``;
+export const ButtonAddExternalText = styled.Text``;
+
 export const Button = styled.TouchableOpacity`
   align-items: center;
 

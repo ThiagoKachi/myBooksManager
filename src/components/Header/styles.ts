@@ -11,7 +11,7 @@ export const Container = styled.View`
   width: 100%;
   height: 160px;
 
-  padding-bottom: 34px;
+  padding-bottom: 24px;
 `;
 
 export const FilterContainer = styled.View`

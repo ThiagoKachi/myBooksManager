@@ -49,6 +49,16 @@
       "summary": "Nakamura m",
       "gender": "Terror",
       "status": "my_list"
+    },
+    {
+      "id": "608176c6-dc3b-4e4e-a0cc-9871c625cc44",
+      "title": "Livro teste",
+      "author": "Thiago ",
+      "pages": 450,
+      "year": 2022,
+      "summary": "Qualquer coisa aqui ",
+      "gender": "Aventura ",
+      "status": "in_progress"
     }
   ]
 }
