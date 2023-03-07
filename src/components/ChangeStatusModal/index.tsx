@@ -5,17 +5,17 @@ import { BookStatus } from '../../models/book';
 
 import * as S from './styles';
 
-interface ModalConfirmationProps {
+interface ChangeStatusModalProps {
   setModalIsOpen: (newValue: boolean) => void;
   modalIsOpen: boolean;
-  handleSearchBookByStatus: (status: BookStatus) => void;
+  handleChangeStatus: (status: BookStatus) => void;
 }
 
-export function ModalConfirmation({
+export function ChangeStatusModal({
   setModalIsOpen,
   modalIsOpen,
-  handleSearchBookByStatus,
-}: ModalConfirmationProps) {
+  handleChangeStatus,
+}: ChangeStatusModalProps) {
   return (
     <S.Container>
       <Modal
@@ -31,33 +31,25 @@ export function ModalConfirmation({
         <TouchableWithoutFeedback>
           <S.ModalContainer>
             <S.CloseModal onPress={() => setModalIsOpen(false)} />
-            <S.FilterHeader>Filtro por status</S.FilterHeader>
-            <S.FilterContainer
-              onPress={() => handleSearchBookByStatus('finished')}
+            <S.ChangeStatusHeader>Mudar o status</S.ChangeStatusHeader>
+            <S.ChangeStatusContainer
+              onPress={() => handleChangeStatus('finished')}
             >
-              <S.FilterLabel>Finalizados</S.FilterLabel>
+              <S.FilterLabel>Finalizado</S.FilterLabel>
               <S.Icon name="book" />
-            </S.FilterContainer>
-            <S.FilterContainer
-              onPress={() => handleSearchBookByStatus('in_progress')}
+            </S.ChangeStatusContainer>
+            <S.ChangeStatusContainer
+              onPress={() => handleChangeStatus('in_progress')}
             >
-              <S.FilterLabel>Livros que estou lendo</S.FilterLabel>
+              <S.FilterLabel>Estou lendo</S.FilterLabel>
               <S.Icon name="book-open" />
-            </S.FilterContainer>
-            <S.FilterContainer
-              onPress={() => handleSearchBookByStatus('my_list')}
+            </S.ChangeStatusContainer>
+            <S.ChangeStatusContainer
+              onPress={() => handleChangeStatus('my_list')}
             >
               <S.FilterLabel>Minha lista</S.FilterLabel>
               <S.Icon name="bookmark" />
-            </S.FilterContainer>
-            <S.FilterContainer>
-              <S.FilterLabel
-                onPress={() => handleSearchBookByStatus('all_books')}
-              >
-                Todos os livros
-              </S.FilterLabel>
-              <S.Icon name="layers" />
-            </S.FilterContainer>
+            </S.ChangeStatusContainer>
           </S.ModalContainer>
         </TouchableWithoutFeedback>
       </Modal>

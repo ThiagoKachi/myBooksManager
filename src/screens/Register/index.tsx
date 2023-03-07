@@ -16,24 +16,11 @@ import { useNavigation } from '@react-navigation/native';
 import { InputForm } from '../../components/Form/InputForm';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
-import { BookStatus } from '../../components/BookDetailsCard';
 
+import { BookProps } from '../../models/book';
 import api from '../../services/api';
 
 import * as S from './styles';
-
-export interface FormDataProps {
-  id: string;
-  author: string;
-  gender: string;
-  title: string;
-  pages: string;
-  summary: string;
-  year: string;
-  status: BookStatus;
-  url?: string;
-  image?: string;
-}
 
 type NavigationProps = {
   navigate: (screen: string) => void;
@@ -67,13 +54,13 @@ export function Register() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormDataProps>({
+  } = useForm<BookProps>({
     resolver: yupResolver(schema),
   });
 
   const navigation = useNavigation<NavigationProps>();
 
-  async function handleRegister(data: FormDataProps) {
+  async function handleRegister(data: BookProps) {
     const newBook = {
       id: String(uuid.v4()),
       title: data.title,
@@ -83,7 +70,6 @@ export function Register() {
       summary: data.summary,
       gender: data.gender,
       image: data.image,
-      url: data.url,
       status: 'my_list',
     };
 
@@ -163,13 +149,6 @@ export function Register() {
                 control={control}
                 error={errors.image && errors.image.message}
                 placeholder="Imagem do livro"
-              />
-
-              <InputForm
-                name="url"
-                control={control}
-                error={errors.url && errors.url.message}
-                placeholder="Link de compra do livro"
               />
             </S.Fields>
 

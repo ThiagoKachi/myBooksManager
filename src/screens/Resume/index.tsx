@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
 import { Header } from '../../components/Header';
+import { Loading } from '../../components/Loading';
+
+import api from '../../services/api';
+import { BookProps } from '../../models/book';
 
 import * as S from './styles';
 
@@ -9,20 +15,48 @@ export interface DataProps {
 }
 
 export function Resume() {
-  const DATA: DataProps[] = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Romance',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Aventura',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Ficção',
-    },
-  ];
+  const [isLoading, setIsLoading] = useState(false);
+  const [booksResume, setBooksResume] = useState({
+    finished: 0,
+    myList: 0,
+    inProgress: 0,
+  });
+
+  async function loadBooks() {
+    setIsLoading(true);
+    try {
+      const response = await api.get<BookProps[]>('/books');
+      const finishedBooks = response.data.filter(
+        (book) => book.status === 'finished'
+      ).length;
+      const myListBooks = response.data.filter(
+        (book) => book.status === 'my_list'
+      ).length;
+      const inProgressBooks = response.data.filter(
+        (book) => book.status === 'in_progress'
+      ).length;
+
+      setBooksResume({
+        finished: finishedBooks,
+        myList: myListBooks,
+        inProgress: inProgressBooks,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadBooks();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadBooks();
+    }, [])
+  );
 
   return (
     <S.Container>
@@ -33,31 +67,27 @@ export function Resume() {
         <S.Icon name="tree" />
       </S.ResumeHeader>
 
-      <S.ResumeContainer>
-        <S.ResumeCard>
-          <S.ResumeIcon name="book" />
-          <S.ResumeInfo>10</S.ResumeInfo>
-          <S.ResumeInfoName>Finalizados</S.ResumeInfoName>
-        </S.ResumeCard>
-        <S.ResumeCard>
-          <S.ResumeIcon name="book-open" />
-          <S.ResumeInfo>10</S.ResumeInfo>
-          <S.ResumeInfoName>Lendo</S.ResumeInfoName>
-        </S.ResumeCard>
-        <S.ResumeCard>
-          <S.ResumeIcon name="layers" />
-          <S.ResumeInfo>10</S.ResumeInfo>
-          <S.ResumeInfoName>Minha lista</S.ResumeInfoName>
-        </S.ResumeCard>
-      </S.ResumeContainer>
-      <S.CategoryContainer>
-        <S.CategoryTitle>Categorias favoritas:</S.CategoryTitle>
-        <S.CategoryCard
-          data={DATA}
-          renderItem={({ item }) => <S.Card>• {item.title} - 1 livros</S.Card>}
-          keyExtractor={(item) => item.id}
-        />
-      </S.CategoryContainer>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <S.ResumeContainer>
+          <S.ResumeCard>
+            <S.ResumeIcon name="book" />
+            <S.ResumeInfo>{booksResume.finished}</S.ResumeInfo>
+            <S.ResumeInfoName>Finalizados</S.ResumeInfoName>
+          </S.ResumeCard>
+          <S.ResumeCard>
+            <S.ResumeIcon name="book-open" />
+            <S.ResumeInfo>{booksResume.inProgress}</S.ResumeInfo>
+            <S.ResumeInfoName>Lendo</S.ResumeInfoName>
+          </S.ResumeCard>
+          <S.ResumeCard>
+            <S.ResumeIcon name="layers" />
+            <S.ResumeInfo>{booksResume.myList}</S.ResumeInfo>
+            <S.ResumeInfoName>Minha lista</S.ResumeInfoName>
+          </S.ResumeCard>
+        </S.ResumeContainer>
+      )}
     </S.Container>
   );
 }

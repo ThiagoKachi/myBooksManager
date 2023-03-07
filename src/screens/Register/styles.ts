@@ -33,15 +33,19 @@ export const Fields = styled.View``;
 export const TransactionsTypes = styled.View`
   flex-direction: row;
   justify-content: space-between;
+
   margin-bottom: 16px;
 `;
 
 export const Button = styled.TouchableOpacity`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.primary};
-  padding: 16px;
-  border-radius: 6px;
   align-items: center;
+
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 6px;
 `;
 
 export const ButtonText = styled.Text`

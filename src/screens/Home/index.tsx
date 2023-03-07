@@ -5,21 +5,19 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { BookDetailsCard } from '../../components/BookDetailsCard';
 import { Header } from '../../components/Header';
 import { ModalConfirmation } from '../../components/Modal';
-import { FormDataProps } from '../Register';
 
 import * as S from './styles';
 import api from '../../services/api';
 import { Loading } from '../../components/Loading';
-
-export type BookStatus = 'finished' | 'in_progress' | 'my_list' | 'all_books';
+import { BookProps, BookStatus } from '../../models/book';
 
 export function Home() {
   const navigation = useNavigation<any>();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [books, setBooks] = useState<FormDataProps[]>([]);
-  const [searchListData, setSearchListData] = useState<FormDataProps[]>([]);
+  const [books, setBooks] = useState<BookProps[]>([]);
+  const [searchListData, setSearchListData] = useState<BookProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchBooks() {
@@ -48,7 +46,7 @@ export function Home() {
     setSearchListData(response);
   }
 
-  function handleSearchBookByStatus(status: BookStatus | any) {
+  function handleSearchBookByStatus(status: BookStatus) {
     if (status === 'all_books') {
       setModalIsOpen(false);
       return setSearchListData(books);
@@ -64,7 +62,7 @@ export function Home() {
     return setSearchListData(response);
   }
 
-  function handleBookDetails(book: FormDataProps) {
+  function handleBookDetails(book: BookProps) {
     navigation.navigate('Details', { book });
   }
 
@@ -95,14 +93,7 @@ export function Home() {
           data={searchListData}
           renderItem={({ item }) => (
             <BookDetailsCard
-              id={item.id}
-              title={item.title}
-              author={item.author}
-              year={item.year}
-              pages={item.pages}
-              category={item.gender}
-              status={item.status}
-              image={''}
+              book={item}
               onPress={() => handleBookDetails(item)}
             />
           )}

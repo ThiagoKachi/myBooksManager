@@ -18,7 +18,7 @@
       "year": 2000,
       "summary": "Qualquer coisa aqui ",
       "gender": "Aventura",
-      "status": "my_list"
+      "status": "in_progress"
     },
     {
       "id": "fbb3e6da-592c-431a-a039-63ffa10f43f4",
@@ -28,7 +28,7 @@
       "year": 1996,
       "summary": "Alguma coisa aqui",
       "gender": "Aventura",
-      "status": "my_list"
+      "status": "finished"
     },
     {
       "id": "665d836a-9df5-4bf1-8e97-6ca57437f4de",
@@ -38,7 +38,7 @@
       "year": 1467,
       "summary": "Bla",
       "gender": "Comedia",
-      "status": "my_list"
+      "status": "in_progress"
     },
     {
       "id": "3c9177d8-7216-4bb3-8c05-8f6843906320",

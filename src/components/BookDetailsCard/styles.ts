@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 interface StatusLabelProps {
-  status: 'finished' | 'in_progress' | 'my_list';
+  status: 'finished' | 'in_progress' | 'my_list' | string;
 }
 
 export const Container = styled.TouchableOpacity<any>`

@@ -85,36 +85,44 @@ export const Pages = styled(Year)`
   margin-left: 16px;
 `;
 
-export const ResumeContainer = styled.ScrollView``;
+export const ChangeStatusButton = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
 
-export const ChangeStatusButton = styled.TouchableOpacity`
   width: 85%;
-  margin: 16px auto;
+  margin: 8px auto;
   padding: 16px 0;
-
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 6px;
-
-  background-color: ${({ theme }) => theme.colors.primary};
 `;
+
+export const StatusButton = styled.TouchableOpacity``;
 
 export const StatusMessage = styled.Text`
   font-size: 14px;
+  text-decoration: underline;
 
   font-family: ${({ theme }) => theme.fonts.regular};
-`;
-export const Status = styled.Text`
-  font-size: 16px;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
-export const ChangeStatusButtonText = styled.Text`
-  text-align: center;
+export const StatusContainer = styled.View`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
 
+export const Label = styled(Year)`
   color: ${({ theme }) => theme.colors.shape};
-
-  font-family: ${({ theme }) => theme.fonts.semibold};
-  font-size: 18px;
 `;
+
+export const LabelText = styled(Year)`
+  color: ${({ theme }) => theme.colors.title};
+
+  margin-right: 8px;
+`;
+
+export const ResumeContainer = styled.ScrollView``;
 
 export const Resume = styled.Text`
   padding: 8px 32px;

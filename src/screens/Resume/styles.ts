@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 import { Entypo, Feather } from '@expo/vector-icons';
-import { FlatList, FlatListProps } from 'react-native';
-import { DataProps } from '.';
 
 export const Container = styled.View`
   flex: 1;
@@ -75,44 +73,4 @@ export const ResumeInfoName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
 
   color: ${({ theme }) => theme.colors.border_dark};
-`;
-
-export const CategoryContainer = styled.View`
-  margin: 16px auto;
-
-  width: 100%;
-  flex: 1;
-`;
-
-export const CategoryTitle = styled.Text`
-  margin-left: 22px;
-
-  font-size: 18px;
-  font-family: ${({ theme }) => theme.fonts.medium};
-
-  color: ${({ theme }) => theme.colors.title};
-`;
-
-export const CategoryCard = styled(
-  FlatList as new (props: FlatListProps<DataProps>) => FlatList<DataProps>
-).attrs({
-  contentContainerStyle: { paddingBottom: 30 },
-  showsVerticalScrollIndicator: false,
-})`
-  width: 90%;
-
-  margin: 8px auto;
-  padding: 8px 16px;
-
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 8px;
-`;
-
-export const Card = styled.Text`
-  font-size: 16px;
-  font-family: ${({ theme }) => theme.fonts.semibold};
-
-  color: ${({ theme }) => theme.colors.title};
-
-  margin-top: 8px;
 `;
