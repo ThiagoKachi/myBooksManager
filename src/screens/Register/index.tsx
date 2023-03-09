@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Keyboard,
   KeyboardAvoidingView,
+  Modal,
   TouchableWithoutFeedback,
 } from 'react-native';
 import uuid from 'react-native-uuid';
@@ -16,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { InputForm } from '../../components/Form/InputForm';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
+import { SearchBook } from '../../components/SearchBook';
 
 import { BookProps } from '../../models/book';
 import api from '../../services/api';
@@ -47,7 +49,8 @@ const schema = yup.object().shape({
 export function Register() {
   const theme = useTheme();
 
-  const [isLoading, setLoading] = React.useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [bookSearchModalOpen, setBookSearchModalOpen] = useState(false);
 
   const {
     control,
@@ -88,87 +91,96 @@ export function Register() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-        <S.Container>
-          <Header isSearchable={false} title="Cadastrar livro" />
+    <>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+          <S.Container>
+            <Header isSearchable={false} title="Cadastrar livro" />
 
-          <S.Form>
-            <S.Fields>
-              <InputForm
-                name="title"
-                control={control}
-                error={errors.title && errors.title.message}
-                placeholder="Nome do livro"
-                autoCapitalize="sentences"
-                autoCorrect={false}
-              />
+            <S.Form>
+              <S.Fields>
+                <InputForm
+                  name="title"
+                  control={control}
+                  error={errors.title && errors.title.message}
+                  placeholder="Nome do livro"
+                  autoCapitalize="sentences"
+                  autoCorrect={false}
+                />
 
-              <InputForm
-                name="author"
-                control={control}
-                error={errors.author && errors.author.message}
-                placeholder="Autor"
-              />
+                <InputForm
+                  name="author"
+                  control={control}
+                  error={errors.author && errors.author.message}
+                  placeholder="Autor"
+                />
 
-              <InputForm
-                name="pages"
-                control={control}
-                error={errors.pages && errors.pages.message}
-                placeholder="Nº de páginas"
-                keyboardType="numeric"
-              />
+                <InputForm
+                  name="pages"
+                  control={control}
+                  error={errors.pages && errors.pages.message}
+                  placeholder="Nº de páginas"
+                  keyboardType="numeric"
+                />
 
-              <InputForm
-                name="year"
-                control={control}
-                error={errors.year && errors.year.message}
-                placeholder="Ano de lançamento"
-                keyboardType="numeric"
-                maxLength={4}
-              />
+                <InputForm
+                  name="year"
+                  control={control}
+                  error={errors.year && errors.year.message}
+                  placeholder="Ano de lançamento"
+                  keyboardType="numeric"
+                  maxLength={4}
+                />
 
-              <InputForm
-                name="summary"
-                control={control}
-                error={errors.summary && errors.summary.message}
-                placeholder="Resumo"
-                multiline
-                numberOfLines={8}
-              />
+                <InputForm
+                  name="summary"
+                  control={control}
+                  error={errors.summary && errors.summary.message}
+                  placeholder="Resumo"
+                  multiline
+                  numberOfLines={8}
+                />
 
-              <InputForm
-                name="gender"
-                control={control}
-                error={errors.gender && errors.gender.message}
-                placeholder="Gênero"
-              />
+                <InputForm
+                  name="gender"
+                  control={control}
+                  error={errors.gender && errors.gender.message}
+                  placeholder="Gênero"
+                />
 
-              <InputForm
-                name="image"
-                control={control}
-                error={errors.image && errors.image.message}
-                placeholder="Imagem do livro"
-              />
-            </S.Fields>
+                <InputForm
+                  name="image"
+                  control={control}
+                  error={errors.image && errors.image.message}
+                  placeholder="Imagem do livro"
+                />
+              </S.Fields>
 
-            <S.ButtonContainer>
-              <S.Button onPress={handleSubmit(handleRegister)}>
-                <S.ButtonText disabled={isLoading}>
-                  {isLoading ? (
-                    <Loading color={theme.colors.shape} size="small" />
-                  ) : (
-                    'Enviar'
-                  )}
-                </S.ButtonText>
-              </S.Button>
-              <S.ButtonAddExternal>
-                <S.ButtonAddExternalText>Buscar livro</S.ButtonAddExternalText>
-              </S.ButtonAddExternal>
-            </S.ButtonContainer>
-          </S.Form>
-        </S.Container>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+              <S.ButtonContainer>
+                <S.Button onPress={handleSubmit(handleRegister)}>
+                  <S.ButtonText disabled={isLoading}>
+                    {isLoading ? (
+                      <Loading color={theme.colors.shape} size="small" />
+                    ) : (
+                      'Enviar'
+                    )}
+                  </S.ButtonText>
+                </S.Button>
+                <S.ButtonAddExternal
+                  onPress={() => setBookSearchModalOpen(true)}
+                >
+                  <S.ButtonAddExternalText>
+                    Buscar livro
+                  </S.ButtonAddExternalText>
+                </S.ButtonAddExternal>
+              </S.ButtonContainer>
+            </S.Form>
+          </S.Container>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+      <Modal visible={bookSearchModalOpen}>
+        <SearchBook setBookSearchModalOpen={setBookSearchModalOpen} />
+      </Modal>
+    </>
   );
 }

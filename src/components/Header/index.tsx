@@ -7,12 +7,14 @@ interface HeaderProps extends TextInputProps {
   isSearchable: boolean;
   title?: string;
   setModalIsOpen?: (value: boolean) => void;
+  headerHeight?: string;
 }
 
 export function Header({
   isSearchable = true,
   title,
   setModalIsOpen,
+  headerHeight = '140px',
   ...rest
 }: HeaderProps) {
   function handleOpenModal() {
@@ -23,7 +25,7 @@ export function Header({
   }
 
   return (
-    <S.Container>
+    <S.Container headerHeight={headerHeight}>
       {isSearchable ? <S.AppTitle>MyBooksManager</S.AppTitle> : null}
       {isSearchable ? (
         <S.FilterContainer>

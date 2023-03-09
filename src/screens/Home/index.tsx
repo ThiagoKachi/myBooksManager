@@ -85,6 +85,7 @@ export function Home() {
         returnKeyType="search"
         onSubmitEditing={handleSearchBook}
         setModalIsOpen={setModalIsOpen}
+        headerHeight={'180px'}
       />
       {isLoading ? (
         <Loading />

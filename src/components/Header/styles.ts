@@ -2,14 +2,18 @@ import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 
-export const Container = styled.View`
+interface HeaderProps {
+  headerHeight: string;
+}
+
+export const Container = styled.View<HeaderProps>`
   background-color: ${({ theme }) => theme.colors.primary};
 
   align-items: center;
   justify-content: flex-end;
 
   width: 100%;
-  height: 160px;
+  height: ${({ headerHeight }) => headerHeight && headerHeight};
 
   padding-bottom: 24px;
 `;

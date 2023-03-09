@@ -5,15 +5,6 @@ export const Container = styled.ScrollView`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const Header = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-  width: 100%;
-  height: 114px;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 18px;
-`;
-
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
@@ -38,8 +29,19 @@ export const TransactionsTypes = styled.View`
 `;
 
 export const ButtonContainer = styled.View``;
-export const ButtonAddExternal = styled.TouchableOpacity``;
-export const ButtonAddExternalText = styled.Text``;
+
+export const ButtonAddExternal = styled.TouchableOpacity`
+  margin: 16px auto;
+`;
+
+export const ButtonAddExternalText = styled.Text`
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+
+  color: ${({ theme }) => theme.colors.title};
+
+  text-decoration: underline;
+`;
 
 export const Button = styled.TouchableOpacity`
   align-items: center;
