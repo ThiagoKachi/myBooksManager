@@ -42,3 +42,76 @@ export const Icon = styled(Feather)`
 
   color: ${({ theme }) => theme.colors.shape};
 `;
+
+export const BookCardContainer = styled.View`
+  width: 100%;
+
+  margin-top: 16px;
+`;
+
+export const BookCard = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: ${({ theme }) => theme.colors.shape};
+
+  border-radius: 6px;
+
+  padding: 8px 0;
+`;
+
+export const BookDetails = styled.View`
+  margin-left: 16px;
+`;
+
+export const BookCardImage = styled.Image`
+  width: 120px;
+  height: 120px;
+`;
+
+export const BookCardTitle = styled.Text`
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.semibold};
+
+  color: ${({ theme }) => theme.colors.title};
+`;
+
+export const BookCardAuthor = styled.Text`
+  font-size: 14px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+
+  color: ${({ theme }) => theme.colors.border_dark};
+
+  margin-top: 8px;
+`;
+
+export const BookPages = styled.Text`
+  font-size: 14px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+
+  color: ${({ theme }) => theme.colors.border_dark};
+
+  margin-top: 2px;
+`;
+
+export const BookYear = styled.Text`
+  font-size: 14px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+
+  color: ${({ theme }) => theme.colors.border_dark};
+
+  margin-top: 2px;
+`;
+
+export const NoBooksFound = styled.Text`
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 50%;
+
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+
+  color: ${({ theme }) => theme.colors.border_dark};
+`;
