@@ -35,7 +35,7 @@ export function BookDetailsCard({ book, ...rest }: BookDetailsCardProps) {
           <S.Divider>•</S.Divider>
           <S.Pages>{book.pages} páginas</S.Pages>
         </S.BookInfos>
-        <S.BookCategory>Categoria: {book.category}</S.BookCategory>
+        <S.BookCategory>Categoria: {book.gender}</S.BookCategory>
         <S.BookStatus>
           <S.StatusTitle>Status:</S.StatusTitle>
           <S.StatusLabel status={book.status}>

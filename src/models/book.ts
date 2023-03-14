@@ -9,6 +9,5 @@ export interface BookProps {
   summary: string;
   year: string;
   status: BookStatus;
-  category: string;
   image?: string;
 }

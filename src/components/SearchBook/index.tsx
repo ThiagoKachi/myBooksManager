@@ -32,7 +32,6 @@ export function SearchBook({ setBookSearchModalOpen }: SearchBookProps) {
       setLoading(false);
     }
   }
-  console.log(books[0]?.volumeInfo?.imageLinks?.thumbnail);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -59,7 +58,13 @@ export function SearchBook({ setBookSearchModalOpen }: SearchBookProps) {
           <FlatList
             data={books}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <BookCardDetails book={item} />}
+            renderItem={({ item }) => (
+              <BookCardDetails
+                book={item}
+                setBookSearchModalOpen={setBookSearchModalOpen}
+                setLoading={setLoading}
+              />
+            )}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 24, width: '61%' }}
           />

@@ -24,7 +24,7 @@ import api from '../../services/api';
 
 import * as S from './styles';
 
-type NavigationProps = {
+export type NavigationProps = {
   navigate: (screen: string) => void;
 };
 

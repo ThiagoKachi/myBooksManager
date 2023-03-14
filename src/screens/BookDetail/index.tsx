@@ -56,7 +56,7 @@ export function BookDetail() {
         <S.Image style={{ resizeMode: 'contain' }} source={bookImage} />
         <S.BookContainer>
           <S.Name>{book.title}</S.Name>
-          <S.Author>{book.author}</S.Author>
+          <S.Author>Autor: {book.author}</S.Author>
           <S.Gender>Gênero: {book.gender}</S.Gender>
           <S.PageYear>
             <S.Year>Ano: {book.year}</S.Year>

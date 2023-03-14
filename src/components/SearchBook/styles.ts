@@ -49,7 +49,7 @@ export const BookCardContainer = styled.View`
   margin-top: 16px;
 `;
 
-export const BookCard = styled.View`
+export const BookCard = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -58,7 +58,7 @@ export const BookCard = styled.View`
 
   border-radius: 6px;
 
-  padding: 8px 0;
+  padding: 8px;
 `;
 
 export const BookDetails = styled.View`
@@ -73,6 +73,9 @@ export const BookCardImage = styled.Image`
 export const BookCardTitle = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.semibold};
+
+  word-break: auto;
+  width: 220px;
 
   color: ${({ theme }) => theme.colors.title};
 `;

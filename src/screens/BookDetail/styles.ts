@@ -35,25 +35,29 @@ export const Image = styled.Image`
   width: 250px;
   height: 300px;
 
-  margin-top: -160px;
+  margin-top: -180px;
 `;
 
 export const BookContainer = styled.View`
-  align-items: center;
+  padding: 0 32px;
+
+  align-items: flex-start;
   justify-content: center;
 `;
 
 export const Name = styled.Text`
-  margin-top: 16px;
+  text-align: justify;
 
   font-size: 22px;
   font-family: ${({ theme }) => theme.fonts.semibold};
 
   color: ${({ theme }) => theme.colors.text_dark};
+
+  margin-top: 16px;
 `;
 
 export const Author = styled.Text`
-  margin-top: 2px;
+  margin-top: 8px;
 
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.semibold};
